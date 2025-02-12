@@ -1,0 +1,55 @@
+{
+    "manifest_version": 3,
+    "name": "Web Activity Tracker",
+    "version": "1.0.0",
+    "description": "Track and analyze your web browsing activity",
+    
+    "permissions": [
+      "tabs",
+      "activeTab",
+      "storage",
+      "scripting",
+      "webNavigation",
+      "alarms"
+    ],
+  
+    "host_permissions": [
+      "<all_urls>"
+    ],
+  
+    "background": {
+      "service_worker": "scripts/background/tracker.js"
+      
+    },
+  
+    "action": {
+      "default_popup": "html/popup.html",
+      "default_icon": {
+        "16": "assets/icons/icon16.png",
+        "48": "assets/icons/icon48.png",
+        "128": "assets/icons/icon128.png"
+      }
+    },
+  
+    "icons": {
+      "16": "assets/icons/icon16.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": [
+          "scripts/handlers/tabs.js",
+          "scripts/storage/local.js"
+        ],
+        "run_at": "document_start"
+      }
+    ],
+  
+    "web_accessible_resources": [{
+      "resources": ["scripts/*", "html/*", "styles/*"],
+      "matches": ["<all_urls>"]
+    }]
+}
