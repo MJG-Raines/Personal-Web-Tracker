@@ -27,7 +27,7 @@ const getStoredActivities = async () => {
     }
 };
 
-module.exports = {
+export {
     saveActivity,
     getStoredActivities
 };

@@ -1,4 +1,4 @@
-const { saveActivity } = require('../storage/local');
+import { saveActivity } from '../storage/local.js';
 
 /**
  * Validates tab data before processing
@@ -43,11 +43,9 @@ async function handleTabActivated(tabInfo) {
             console.error('Invalid tab info provided:', tabInfo);
             return false;
         }
-
         if (!isTrackableUrl(tabInfo.url)) {
             return false;
         }
-
         const activityData = {
             type: 'activation',
             tabId: tabInfo.tabId,
@@ -57,7 +55,6 @@ async function handleTabActivated(tabInfo) {
             timestamp: tabInfo.timestamp,
             duration: 0  // Will be calculated on deactivation
         };
-
         await saveActivity(activityData);
         return true;
     } catch (error) {
@@ -77,11 +74,9 @@ async function handleTabUpdated(tabInfo) {
             console.error('Invalid tab info provided:', tabInfo);
             return false;
         }
-
         if (!isTrackableUrl(tabInfo.url)) {
             return false;
         }
-
         const activityData = {
             type: 'update',
             tabId: tabInfo.tabId,
@@ -91,7 +86,6 @@ async function handleTabUpdated(tabInfo) {
             timestamp: tabInfo.timestamp,
             previousUrl: tabInfo.previousUrl
         };
-
         await saveActivity(activityData);
         return true;
     } catch (error) {
@@ -112,11 +106,9 @@ async function handleTabVisibility(tabInfo, isVisible) {
             console.error('Invalid tab info provided:', tabInfo);
             return false;
         }
-
         if (!isTrackableUrl(tabInfo.url)) {
             return false;
         }
-
         const activityData = {
             type: 'visibility',
             tabId: tabInfo.tabId,
@@ -126,7 +118,6 @@ async function handleTabVisibility(tabInfo, isVisible) {
             timestamp: tabInfo.timestamp,
             isVisible: isVisible
         };
-
         await saveActivity(activityData);
         return true;
     } catch (error) {
@@ -135,7 +126,7 @@ async function handleTabVisibility(tabInfo, isVisible) {
     }
 }
 
-module.exports = {
+export {
     handleTabActivated,
     handleTabUpdated,
     handleTabVisibility

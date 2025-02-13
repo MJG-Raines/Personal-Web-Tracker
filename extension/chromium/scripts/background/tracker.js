@@ -1,8 +1,8 @@
-// Import handlers and storage using CommonJS
-const { handleTabActivated, handleTabUpdated } = require('../handlers/tabs');
-const { handleWindowFocus } = require('../handlers/windows');
-const { saveActivity, getStoredActivities } = require('../storage/local');
-const { syncToServer } = require('../storage/sync');
+// Import handlers and storage using ES Modules
+import { handleTabActivated, handleTabUpdated } from '../handlers/tabs.js';
+import { handleWindowFocus } from '../handlers/windows.js';
+import { saveActivity, getStoredActivities } from '../storage/local.js';
+import { syncToServer } from '../storage/sync.js';
 
 class ActivityTracker {
     constructor() {
@@ -157,4 +157,4 @@ chrome.runtime.onSuspend.addListener(async () => {
 });
 
 // Export for testing
-module.exports = ActivityTracker;
+export default ActivityTracker;

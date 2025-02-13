@@ -40,7 +40,7 @@ async function handleSyncError(error) {
     }
 }
 
-module.exports = {
+export {
     syncToServer,
     handleSyncError
 };

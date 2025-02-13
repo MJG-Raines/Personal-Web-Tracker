@@ -1,4 +1,4 @@
-const { saveActivity } = require('../storage/local');
+import { saveActivity } from '../storage/local.js';
 
 /**
  * Validates window event data
@@ -102,7 +102,7 @@ async function handleWindowCreated(windowInfo) {
     }
 }
 
-module.exports = {
+export {
     handleWindowFocus,
     handleWindowState,
     handleWindowCreated
